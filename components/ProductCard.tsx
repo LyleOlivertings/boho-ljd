@@ -14,11 +14,12 @@ export default function ProductCard({ product }: { product: any }) {
     >
       <Link href={`/product/${product.id}`} passHref>
         <div className="relative w-full h-80 overflow-hidden">
+          {/* New Image component syntax with 'fill' */}
           <Image
             src={product.image}
             alt={product.name}
-            layout="fill"
-            objectFit="cover"
+            fill // This prop replaces 'layout="fill"'
+            style={{ objectFit: 'cover' }} // This prop replaces 'objectFit="cover"'
             className="transition-transform duration-300 ease-in-out hover:scale-105"
           />
         </div>

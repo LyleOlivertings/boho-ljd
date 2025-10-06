@@ -1,17 +1,23 @@
 // components/Hero.tsx
 
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import Link from 'next/link';
+import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function Hero() {
   return (
     <section className="relative h-[80vh] flex items-center justify-center text-center overflow-hidden">
-      <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1517702808076-21ce62dfd827?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")' }}>
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage:
+            '/hero.png',
+        }}
+      >
         <div className="absolute inset-0 bg-neutral-900 bg-opacity-30 backdrop-blur-sm"></div>
       </div>
-      
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

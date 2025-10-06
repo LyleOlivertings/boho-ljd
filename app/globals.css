@@ -1,12 +1,20 @@
+/* app/globals.css */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  html {
-    font-family: 'Poppins', sans-serif; /* Or another elegant sans-serif font */
+  :root {
+    --font-poppins: 'Poppins';
+    --font-playfair-display: 'Playfair Display';
   }
+
+  html {
+    font-family: var(--font-poppins), sans-serif;
+  }
+  
   h1, h2, h3 {
-    font-family: 'Playfair Display', serif; /* A classic serif for headings */
+    font-family: var(--font-playfair-display), serif;
   }
 }
