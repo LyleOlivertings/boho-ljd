@@ -23,7 +23,7 @@ const mockProducts = [
     description: 'A light, airy kimono with a beautiful fringe.',
     price: 480,
     category: 'Apparel',
-    image: 'https://res.cloudinary.com/your-cloud-name/image/upload/v123456789/fringe-kimono.jpg',
+    image: '/kimono.webp',
     colors: ['White', 'Black', 'Blue'],
     sizes: ['S', 'M', 'L'],
     reviews: [
@@ -36,7 +36,7 @@ const mockProducts = [
     description: 'Perfect for a sunny day on the beach.',
     price: 250,
     category: 'Accessories',
-    image: 'https://res.cloudinary.com/your-cloud-name/image/upload/v123456789/woven-hat.jpg',
+    image: '/woven-hat.jpg',
     colors: ['Straw', 'Khaki'],
     sizes: ['One Size'],
     reviews: [],
@@ -47,7 +47,7 @@ const mockProducts = [
     description: 'Delicate earrings with a feather motif.',
     price: 180,
     category: 'Jewelry',
-    image: 'https://res.cloudinary.com/your-cloud-name/image/upload/v123456789/feather-earrings.jpg',
+    image: '/feather-earrings-878497_1080x.webp',
     colors: ['Silver', 'Gold'],
     sizes: ['One Size'],
     reviews: [
@@ -60,7 +60,7 @@ const mockProducts = [
     description: 'A smooth and elegant scarf.',
     price: 300,
     category: 'Accessories',
-    image: 'https://res.cloudinary.com/your-cloud-name/image/upload/v123456789/silk-scarf.jpg',
+    image: '/silk.jpg',
     colors: ['Pink', 'Green', 'Purple'],
     sizes: ['One Size'],
     reviews: [],
@@ -71,7 +71,7 @@ const mockProducts = [
     description: 'A beautiful dress with hand-embroidered details.',
     price: 750,
     category: 'Apparel',
-    image: 'https://res.cloudinary.com/your-cloud-name/image/upload/v123456789/embroidered-dress.jpg',
+    image: '/dress,jpg',
     colors: ['White', 'Cream'],
     sizes: ['S', 'M', 'L', 'XL'],
     reviews: [],
@@ -83,7 +83,7 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   const product = mockProducts.find((p) => p.id === params.id);
-  
+
   if (!product) {
     return new NextResponse(JSON.stringify({ error: 'Product not found' }), {
       status: 404,

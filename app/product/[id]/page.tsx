@@ -1,9 +1,12 @@
 // app/product/[id]/page.tsx
 
+'use client'; // Add this directive at the top
+
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { motion } from 'framer-motion';
 import ProductActions from '@/components/ProductActions';
+import { useEffect, useState } from 'react';
 
 async function getProduct(id: string) {
   const res = await fetch(`http://localhost:3000/api/products/${id}`);
@@ -16,11 +19,33 @@ async function getProduct(id: string) {
   return res.json();
 }
 
-export default async function ProductPage({ params }: { params: { id: string } }) {
-  const product = await getProduct(params.id);
+export default function ProductPage({ params }: { params: { id: string } }) {
+  // Use useEffect to fetch data on the client side if necessary, or pass the data as props
+  // For simplicity, we'll keep the async data fetch here, but the component itself is now client-side.
+  interface Product {
+    id: string;
+    name: string;
+    image: string;
+    price: number;
+    description: string;
+    reviews?: { id: string; user: string; rating: number; comment: string }[];
+  }
+
+  const [product, setProduct] = useState<Product | null>(null);
+
+  useEffect(() => {
+    async function fetchProduct() {
+      const fetchedProduct = await getProduct(params.id);
+      if (!fetchedProduct) {
+        notFound();
+      }
+      setProduct(fetchedProduct);
+    }
+    fetchProduct();
+  }, [params.id]);
 
   if (!product) {
-    notFound();
+    return <div>Loading...</div>; // Or a nice skeleton loader
   }
 
   return (
