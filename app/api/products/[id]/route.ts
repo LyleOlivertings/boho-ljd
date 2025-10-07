@@ -1,4 +1,4 @@
-// app/api/products/route.ts
+// app/api/products/[id]/route.ts
 
 import { NextResponse } from 'next/server';
 
@@ -9,7 +9,7 @@ const mockProducts = [
     description: 'A hand-woven bag with intricate tassel details.',
     price: 350,
     category: 'Bags',
-    image: 'https://res.cloudinary.com/your-cloud-name/image/upload/v123456789/tassel-bag.jpg',
+    image: '/tassel-bag.webp',
     colors: ['Beige', 'Brown'],
     sizes: ['One Size'],
     reviews: [
@@ -78,23 +78,20 @@ const mockProducts = [
   },
 ];
 
-export async function GET(req: Request) {
-  const url = new URL(req.url);
-  const productId = url.searchParams.get('id');
-  const category = url.searchParams.get('category');
+export async function GET(
+  req: Request,
+  { params }: { params: { id: string } }
+) {
+  const product = mockProducts.find((p) => p.id === params.id);
   
-  if (productId) {
-    const product = mockProducts.find(p => p.id === productId);
-    if (!product) {
-      return new NextResponse(JSON.stringify({ error: 'Product not found' }), { status: 404 });
-    }
-    return NextResponse.json(product);
+  if (!product) {
+    return new NextResponse(JSON.stringify({ error: 'Product not found' }), {
+      status: 404,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
   }
 
-  if (category) {
-    const filteredProducts = mockProducts.filter(p => p.category === category);
-    return NextResponse.json(filteredProducts);
-  }
-
-  return NextResponse.json(mockProducts);
+  return NextResponse.json(product);
 }

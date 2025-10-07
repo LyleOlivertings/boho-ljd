@@ -11,7 +11,7 @@ async function getProducts() {
       id: '1',
       name: 'Boho Tassel Bag',
       price: 350,
-      image: 'https://res.cloudinary.com/your-cloud-name/image/upload/v123456789/tassel-bag.jpg',
+      image: '/tassel-bag.webp',
     },
     {
       id: '2',
